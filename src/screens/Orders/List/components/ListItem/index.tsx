@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.m.styl";
 import { OrdersListItem } from "../../types";
 import { observer } from "mobx-react-lite";
+import OrdersShowStore from "../../../Show/store";
 import moment from "moment";
 import "moment/locale/ru";
 import Tag from "components/Tag";
@@ -11,10 +12,14 @@ import { Link } from "react-router-dom";
 
 const ListItem = observer(
   ({ order }: { order: OrdersListItem }): JSX.Element => {
+    const [showState] = React.useState(new OrdersShowStore());
     if (!order) return <span></span>;
     return (
       <div id="row" className={styles.row}>
-        <div className={styles.orderNumber}>
+        <div
+          onClick={() => showState.initialize(order.id.toString())}
+          className={styles.orderNumber}
+        >
           <Link to={`/orders/${order.id}`}>{order.number}</Link>
         </div>
         <div>{moment(order.createdAt).format("DD.MM.YYYY HH:mm")}</div>

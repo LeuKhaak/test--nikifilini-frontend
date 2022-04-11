@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import OrdersShowStore from "./store";
 import { observer } from "mobx-react-lite";
 //import Item from "./components/Item";
@@ -13,12 +13,18 @@ const OrdersShow = observer(
   (): JSX.Element => {
     const [state] = React.useState(new OrdersShowStore());
     const params = useParams();
-    console.log(state);
-    console.log(params);
+
+    //console.log(state);
+    //console.log(params);
+
+    //useEffect(() => {
+    //  console.log(state);
+    //}, [state]);
 
     return (
-      <div className={styles.screenWrapper}>
+      <div id="show" className={styles.screenWrapper}>
         <div className={styles.screen}>
+          <div>{52}</div>
           <div className={styles.items}>{/*<Item item={} />*/}</div>
         </div>
       </div>
